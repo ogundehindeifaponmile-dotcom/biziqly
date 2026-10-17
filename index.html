@@ -3,371 +3,639 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biziqly | Private Beta Access</title>
-    <meta name="description" content="Request private access to the Biziqly beta. An exclusive business intelligence platform.">
+    <title>Biziqly | Predictive Business Intelligence Platform</title>
+    <meta name="description" content="Biziqly is a predictive analytics business development platform. Request early beta access.">
     
-    <!-- Premium Typography: Playfair Display (Serif) for elegance, Inter (Sans) for clean readability -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* --- LUXURY DESIGN SYSTEM --- */
         :root {
-            --bg-primary: #FFFFFF;
-            --bg-subtle: #FAFAFA;
-            --text-primary: #111111;
-            --text-secondary: #666666;
-            --accent: #721422; /* Rich, deep Burgundy */
-            --accent-hover: #5A0F1A;
-            --border: #E5E5E5;
-            --border-focus: #721422;
-            --error: #8B0000;
+            --bg-white: #FFFFFF;
+            --bg-accent: #8A1C32; /* Burgundy */
+            --bg-accent-dark: #6B1225;
+            --text-primary: #0A0A0A;
+            --text-secondary: #555555;
+            --text-light: #FFFFFF;
+            --border: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --navy: #1A1F3A;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
+            background: var(--bg-white);
             color: var(--text-primary);
-            line-height: 1.6;
-            font-weight: 300;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-
-        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
-        a:hover { color: var(--accent); }
-
-        /* --- LAYOUT --- */
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 0 32px; 
-        }
-
-        /* --- HEADER --- */
-        header {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            color: var(--text-primary);
-            letter-spacing: 0.05em;
+        /* --- TOP BAR --- */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 24px 48px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            color: var(--text-primary);
         }
-        
-        .logo span { 
-            color: var(--accent); 
-            font-style: italic;
-        }
+
+        .top-bar .left { max-width: 280px; line-height: 1.4; }
+        .top-bar .center { text-align: center; }
+        .top-bar .right { text-align: right; }
 
         /* --- HERO SECTION --- */
-        .hero { 
-            text-align: center; 
-            padding: 40px 0 80px; 
+        .hero {
+            position: relative;
+            padding: 40px 48px 80px;
+            min-height: 480px;
+            display: flex;
+            align-items: center;
         }
 
-        .eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
+        .hero-content {
+            flex: 1;
+            max-width: 620px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        /* Floating Tags */
+        .tags-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .tag {
+            position: absolute;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-size: 0.9rem;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            line-height: 1.1;
-            margin-bottom: 24px;
             color: var(--text-primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .hero-sub { 
-            font-size: 1.1rem; 
-            color: var(--text-secondary); 
-            max-width: 550px; 
-            margin: 0 auto 60px; 
-            line-height: 1.7;
+        .tag::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--bg-accent);
+            border-radius: 50%;
         }
 
-        /* --- FORM SECTION --- */
-        .form-wrapper {
-            max-width: 480px;
-            margin: 0 auto;
-            text-align: left;
+        .tag-1 { top: 18%; left: 42%; transform: rotate(-4deg); }
+        .tag-2 { top: 28%; left: 44%; transform: rotate(2deg); }
+        .tag-3 { top: 52%; left: 48%; transform: rotate(-2deg); }
+        .tag-4 { top: 72%; left: 30%; transform: rotate(3deg); font-size: 0.8rem; }
+
+        /* Connector lines (decorative) */
+        .connector {
+            position: absolute;
+            border: 1px dashed rgba(138, 28, 50, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .connector-1 { width: 140px; height: 140px; top: 14%; left: 40%; }
+        .connector-2 { width: 180px; height: 180px; top: 48%; left: 46%; }
+
+        /* Venn Diagram */
+        .venn {
+            position: relative;
+            width: 280px;
+            height: 260px;
+            margin-left: auto;
+            flex-shrink: 0;
         }
 
-        .form-title { 
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem; 
-            font-weight: 500; 
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .venn-circle {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 1.5px solid var(--bg-accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .venn-circle .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bg-accent);
+            line-height: 1;
+        }
+
+        .venn-circle .label {
+            font-size: 0.7rem;
             color: var(--text-secondary);
-            margin-bottom: 32px;
-            padding-bottom: 16px;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
+        .venn-1 { top: 0; left: 20px; }
+        .venn-2 { top: 0; right: 20px; }
+        .venn-3 { bottom: 0; left: 50%; transform: translateX(-50%); }
+
+        /* --- MOCKUP SECTION (Burgundy background) --- */
+        .mockup-section {
+            background: var(--bg-accent);
+            border-radius: 48px 48px 0 0;
+            padding: 60px 48px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        /* Browser chrome */
+        .browser-bar {
+            background: #F5F5F5;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             border-bottom: 1px solid var(--border);
         }
 
-        .form-group { margin-bottom: 28px; }
-
-        label { 
-            display: block; 
-            font-size: 0.8rem; 
-            font-weight: 400; 
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px; 
-            color: var(--text-primary); 
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #E0E0E0;
         }
 
-        input, select {
-            width: 100%;
-            padding: 14px 0;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-primary);
+        .browser-dot:nth-child(1) { background: #FF5F57; }
+        .browser-dot:nth-child(2) { background: #FFBD2E; }
+        .browser-dot:nth-child(3) { background: #28C840; }
+
+        .browser-url {
+            margin-left: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            flex: 1;
+            max-width: 400px;
+        }
+
+        /* Mockup content */
+        .mockup-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 520px;
+            position: relative;
+        }
+
+        .mockup-left {
+            position: relative;
+            padding: 40px;
+            background: linear-gradient(135deg, #F8F4F5 0%, #FFFFFF 100%);
+        }
+
+        .mockup-logo {
             font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            border-radius: 0;
-            transition: border-color 0.3s ease;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        input:focus, select:focus {
-            outline: none;
-            border-bottom-color: var(--border-focus);
+        .mockup-logo .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--bg-accent);
+            border-radius: 50%;
         }
 
-        input::placeholder { color: #AAAAAA; font-weight: 300; }
-        
-        select { cursor: pointer; }
-        select option { color: var(--text-primary); background: var(--bg-primary); }
-
-        /* Formspree Error Styling */
-        input[aria-invalid="true"], select[aria-invalid="true"] {
-            border-bottom-color: var(--error);
+        /* Floating data cards */
+        .data-card {
+            position: absolute;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            min-width: 180px;
         }
-        
-        .field-error {
-            color: var(--error);
-            font-size: 0.8rem;
+
+        .data-card .name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .data-card .location {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .data-card .amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--bg-accent);
+        }
+
+        .data-card .status {
+            display: inline-block;
             margin-top: 8px;
-            display: block;
-            font-weight: 400;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            background: #F0F0F0;
+            border-radius: 3px;
+            color: var(--text-secondary);
+        }
+
+        .data-card .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #E8E8E8;
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .data-card .progress-fill {
+            height: 100%;
+            background: var(--bg-accent);
+            border-radius: 2px;
+        }
+
+        .card-1 { top: 60px; left: 30px; transform: rotate(-3deg); z-index: 3; }
+        .card-2 { top: 180px; left: 140px; transform: rotate(2deg); z-index: 4; min-width: 200px; }
+        .card-3 { top: 320px; left: 60px; transform: rotate(-2deg); z-index: 2; }
+        .card-4 { top: 100px; right: 40px; transform: rotate(4deg); z-index: 2; }
+
+        .tag-small {
+            position: absolute;
+            background: var(--bg-accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .tag-small-1 { bottom: 80px; left: 20px; transform: rotate(-5deg); }
+
+        /* Mockup right - Form area */
+        .mockup-right {
+            padding: 48px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mockup-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-bottom: 40px;
+            font-size: 0.85rem;
+        }
+
+        .mockup-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .mockup-nav .btn-nav {
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .mockup-right h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .mockup-right .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        /* Inline form */
+        .inline-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .inline-form input, .inline-form select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        .inline-form input:focus, .inline-form select:focus {
+            outline: none;
+            border-color: var(--bg-accent);
+        }
+
+        .inline-form input[aria-invalid="true"], .inline-form select[aria-invalid="true"] {
+            border-color: #B12704;
+        }
+
+        .field-error {
+            color: #B12704;
+            font-size: 0.75rem;
+            margin-top: -8px;
         }
 
         .form-error-message {
-            color: var(--error);
-            font-size: 0.85rem;
-            text-align: center;
-            margin-top: 24px;
-            padding: 12px;
-            border-top: 1px solid var(--error);
-            border-bottom: 1px solid var(--error);
-            display: none; 
+            color: #B12704;
+            font-size: 0.8rem;
+            padding: 8px;
+            background: #FFF5F5;
+            border-radius: 4px;
+            display: none;
+            margin-bottom: 12px;
         }
 
-        .btn-primary {
-            width: 100%;
-            padding: 18px 24px;
-            background: var(--accent);
-            color: #FFFFFF;
-            border: 1px solid var(--accent);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+        .btn-submit {
+            background: var(--bg-accent);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s ease;
-            margin-top: 16px;
+            transition: background 0.2s;
+            font-family: inherit;
         }
 
-        .btn-primary:hover:not(:disabled) {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
+        .btn-submit:hover:not(:disabled) {
+            background: var(--bg-accent-dark);
         }
 
-        .btn-primary:disabled {
+        .btn-submit:disabled {
             background: #CCCCCC;
-            border-color: #CCCCCC;
             cursor: not-allowed;
         }
 
-        .microcopy { 
-            text-align: center; 
-            font-size: 0.8rem; 
-            color: var(--text-secondary); 
-            margin-top: 24px; 
-            font-style: italic;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Success State */
         .success-message {
-            display: none; 
+            display: none;
             text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
+            padding: 20px 0;
         }
 
-        .success-message h3 { 
-            font-size: 1.75rem; 
-            margin-bottom: 16px; 
-            color: var(--text-primary); 
+        .success-message h3 {
+            font-size: 1.25rem;
+            color: #067D62;
+            margin-bottom: 8px;
         }
-        
+
         .success-message p {
             color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 400px;
-            margin: 0 auto;
+            font-size: 0.9rem;
         }
 
-        /* --- DETAILS SECTION (Editorial Style) --- */
-        .details {
-            padding: 80px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .details-grid {
+        /* Bottom stats inside mockup */
+        .mockup-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 48px;
-            margin-top: 48px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 24px 40px;
+            border-top: 1px solid var(--border);
+            background: #FAFAFA;
         }
 
-        .detail-item h3 { 
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem; 
-            font-weight: 500; 
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px; 
-            color: var(--accent);
+        .stat-item .stat-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
-        .detail-item p { 
-            color: var(--text-secondary); 
-            font-size: 0.95rem; 
-            line-height: 1.7;
+        .stat-item .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            line-height: 1.3;
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 60px 0;
+            background: var(--bg-accent-dark);
+            color: rgba(255,255,255,0.7);
             text-align: center;
-            color: var(--text-secondary);
+            padding: 32px 48px;
             font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            border-top: 1px solid var(--border);
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero { padding: 20px 0 60px; }
-            h1 { font-size: 2.25rem; }
-            .details-grid { gap: 32px; }
+        @media (max-width: 900px) {
+            .top-bar { flex-direction: column; gap: 12px; padding: 20px 24px; }
+            .top-bar .left, .top-bar .center, .top-bar .right { text-align: left; }
+            
+            .hero { flex-direction: column; padding: 20px 24px 60px; }
+            .hero h1 { font-size: 3rem; }
+            .venn { margin: 40px auto 0; }
+            
+            .mockup-section { padding: 32px 16px 60px; border-radius: 32px 32px 0 0; }
+            .mockup-content { grid-template-columns: 1fr; }
+            .mockup-left { min-height: 380px; }
+            .mockup-stats { grid-template-columns: 1fr; gap: 16px; }
+            
+            .tag { display: none; }
+            .connector { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container">
-            <div class="logo">Biziq<span>ly</span></div>
-        </div>
-    </header>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="left">Biziqly is a predictive analytics business development platform</div>
+        <div class="center">Beta Program</div>
+        <div class="right">Early Access 2026</div>
+    </div>
 
-    <!-- HERO & FORM -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="container">
-            <span class="eyebrow">Private Beta Access</span>
-            <h1>The future of business<br>intelligence, refined.</h1>
-            <p class="hero-sub">Biziqly is an exclusive platform designed for those who demand precision, clarity, and control. Request an invitation to test our beta environment and shape the final product.</p>
-            
-            <!-- REGISTRATION FORM (Formspree Integrated) -->
-            <div class="form-wrapper">
-                <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
-                    <div class="form-title">Request Invitation</div>
-                    
-                    <div class="form-group">
-                        <label for="firstName">Full Name</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="Your name" data-fs-field required>
-                        <span data-fs-error="firstName" class="field-error"></span>
-                    </div>
+        <div class="hero-content">
+            <h1>Business<br>development<br>platform</h1>
+        </div>
 
-                    <div class="form-group">
-                        <label for="email">Professional Email</label>
-                        <input type="email" id="email" name="email" placeholder="name@company.com" data-fs-field required>
-                        <span data-fs-error="email" class="field-error"></span>
-                    </div>
+        <!-- Floating Tags -->
+        <div class="tags-container">
+            <div class="connector connector-1"></div>
+            <div class="connector connector-2"></div>
+            <div class="tag tag-1">FinTech</div>
+            <div class="tag tag-2">Software</div>
+            <div class="tag tag-3">Artificial Intelligence</div>
+            <div class="tag tag-4">Active leads</div>
+        </div>
 
-                    <div class="form-group">
-                        <label for="company">Organization</label>
-                        <input type="text" id="company" name="company" placeholder="Company name" data-fs-field>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="bottleneck">Area of Interest</label>
-                        <select id="bottleneck" name="bottleneck" data-fs-field required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="workflow">Workflow Automation</option>
-                            <option value="data">Advanced Analytics</option>
-                            <option value="team">Team Collaboration</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <span data-fs-error="bottleneck" class="field-error"></span>
-                    </div>
-
-                    <button type="submit" data-fs-submit-btn class="btn-primary">Submit Request</button>
-                    
-                    <!-- Form-level error message -->
-                    <div data-fs-error class="form-error-message"></div>
-                    
-                    <p class="microcopy">Discretion assured. Your details will only be used to deliver your private access link.</p>
-                </form>
-
-                <!-- SUCCESS STATE (Managed by Formspree AJAX) -->
-                <div data-fs-success class="success-message">
-                    <h3>Request Received</h3>
-                    <p>Thank you. Your request has been logged. We will contact you directly with your private demo credentials when early access commences.</p>
-                </div>
+        <!-- Venn Diagram -->
+        <div class="venn">
+            <div class="venn-circle venn-1">
+                <div class="number">100</div>
+                <div class="label">hours of<br>research</div>
+            </div>
+            <div class="venn-circle venn-2">
+                <div class="number">220+</div>
+                <div class="label">hours of<br>design</div>
+            </div>
+            <div class="venn-circle venn-3">
+                <div class="number">6</div>
+                <div class="label">team<br>members</div>
             </div>
         </div>
     </section>
 
-    <!-- DETAILS SECTION -->
-    <section class="details">
-        <div class="container">
-            <div class="details-grid">
-                <div class="detail-item">
-                    <h3>01. Priority Access</h3>
-                    <p>Bypass the public waitlist. Receive a direct, secure link to evaluate the beta environment before general availability.</p>
+    <!-- MOCKUP SECTION -->
+    <section class="mockup-section">
+        <div class="mockup-wrapper">
+            <!-- Browser chrome -->
+            <div class="browser-bar">
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-url">app.biziqly.com/beta</div>
+            </div>
+
+            <!-- Mockup content -->
+            <div class="mockup-content">
+                <!-- Left: Floating cards -->
+                <div class="mockup-left">
+                    <div class="mockup-logo"><span class="dot"></span> BIZIQLY</div>
+
+                    <div class="data-card card-1">
+                        <div class="name">Jordan Wentworth</div>
+                        <div class="location">Boston, MA</div>
+                        <div class="amount">$1,293,200</div>
+                        <div class="status">Contacted</div>
+                    </div>
+
+                    <div class="data-card card-2">
+                        <div class="name">Ciera Thomas</div>
+                        <div class="location">Pipeline Stage 3</div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                        <div class="progress-bar" style="margin-top:6px;"><div class="progress-fill" style="width: 60%;"></div></div>
+                        <div class="progress-bar" style="margin-top:6px;"><div class="progress-fill" style="width: 85%;"></div></div>
+                    </div>
+
+                    <div class="data-card card-3">
+                        <div class="name">Mihail Lacusta</div>
+                        <div class="location">Business Lead</div>
+                        <div class="amount">$1,129,039</div>
+                    </div>
+
+                    <div class="data-card card-4">
+                        <div class="name">2 days ago</div>
+                        <div class="amount" style="font-size: 1rem;">$1,129,039</div>
+                        <div class="status">Contacted</div>
+                    </div>
+
+                    <div class="tag-small tag-small-1">Active leads</div>
                 </div>
-                <div class="detail-item">
-                    <h3>02. Direct Influence</h3>
-                    <p>Engage directly with our development team. Your feedback will be instrumental in refining the final architecture and feature set.</p>
+
+                <!-- Right: Registration form -->
+                <div class="mockup-right">
+                    <div class="mockup-nav">
+                        <a href="#">Sign up</a>
+                        <a href="#" class="btn-nav">Log in →</a>
+                    </div>
+
+                    <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
+                        <h2>Request early<br>beta access</h2>
+                        <p class="subtitle">Biziqly is a predictive analytics platform used by business professionals to grow their operations. Join the private beta.</p>
+
+                        <div class="inline-form">
+                            <input type="text" name="firstName" placeholder="Full name" data-fs-field required>
+                            <span data-fs-error="firstName" class="field-error"></span>
+
+                            <input type="email" name="email" placeholder="Work email" data-fs-field required>
+                            <span data-fs-error="email" class="field-error"></span>
+
+                            <select name="bottleneck" data-fs-field required>
+                                <option value="" disabled selected>Area of interest</option>
+                                <option value="workflow">Workflow Automation</option>
+                                <option value="data">Advanced Analytics</option>
+                                <option value="team">Team Collaboration</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span data-fs-error="bottleneck" class="field-error"></span>
+                        </div>
+
+                        <button type="submit" data-fs-submit-btn class="btn-submit">Request Beta Access →</button>
+                        <div data-fs-error class="form-error-message"></div>
+                    </form>
+
+                    <div data-fs-success class="success-message">
+                        <h3>Request received</h3>
+                        <p>We'll send your private demo link shortly.</p>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <h3>03. Founding Privileges</h3>
-                    <p>Participants who provide comprehensive feedback will be granted exclusive founding member status and preferential pricing.</p>
+            </div>
+
+            <!-- Bottom stats -->
+            <div class="mockup-stats">
+                <div class="stat-item">
+                    <div class="stat-number">400mm+</div>
+                    <div class="stat-label">Data points used<br>for analytics</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$3Tn</div>
+                    <div class="stat-label">Investable assets<br>predicted per year</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$77Bn</div>
+                    <div class="stat-label">Predicted home value<br>transacted per year</div>
                 </div>
             </div>
         </div>
@@ -375,12 +643,10 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Biziqly. All rights reserved.</p>
-        </div>
+        © 2026 Biziqly. All rights reserved.
     </footer>
 
-    <!-- FORMSPREE AJAX INTEGRATION -->
+    <!-- FORMSPREE AJAX -->
     <script>
         window.formspree = window.formspree || function () { 
             (formspree.q = formspree.q || []).push(arguments); 
