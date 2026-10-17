@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biziqly | Elevate Your Business IQ | Coming Soon</title>
+    <meta name="description" content="Biziqly is launching soon. Join the waitlist to get exclusive early access to our beta, test the demo, and shape the future of smart business management.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-primary: #0B0F19;
+            --bg-secondary: #151B2B;
+            --bg-card: #1A2235;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --accent: #6366F1; /* Indigo */
+            --accent-hover: #4F46E5;
+            --accent-glow: rgba(99, 102, 241, 0.2);
+            --border-color: #2D3748;
+            --success: #10B981;
+            --error: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- LAYOUT & UTILITIES --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 80px 0; }
+
+        /* --- HEADER --- */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link { color: var(--text-secondary); font-weight: 500; transition: color 0.2s; }
+        .nav-link:hover { color: var(--text-primary); }
+
+        /* --- HERO SECTION --- */
+        .hero { text-align: center; padding: 100px 0 60px; position: relative; }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: -1; pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #818CF8, #6366F1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 48px; }
+
+        /* --- FORM SECTION --- */
+        .form-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 550px;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .form-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        .form-subtitle { color: var(--text-secondary); text-align: center; margin-bottom: 32px; font-size: 0.95rem; }
+
+        .form-group { margin-bottom: 20px; }
+
+        label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary); }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        input::placeholder { color: #475569; }
+
+        /* Formspree Error Styling */
+        input[aria-invalid="true"], select[aria-invalid="true"] {
+            border-color: var(--error);
+        }
+        
+        .field-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: block;
+        }
+
+        .form-error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 16px;
+            padding: 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 6px;
+            display: none; /* Hidden by default, shown by Formspree */
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .microcopy { text-align: center; font-size: 0.8rem; color: var(--text-secondary); margin-top: 16px; }
+
+        /* Success State */
+        .success-message {
+            display: none; /* Hidden by default, shown by Formspree */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .success-icon { font-size: 3rem; margin-bottom: 16px; }
+        .success-message h3 { font-size: 1.5rem; margin-bottom: 8px; color: var(--success); }
+
+        /* --- BENEFITS SECTION --- */
+        .benefits {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 48px; }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+        .benefit-icon {
+            width: 48px; height: 48px;
+            background: var(--accent-glow);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 20px;
+        }
+
+        .benefit-card h3 { font-size: 1.2rem; margin-bottom: 12px; }
+        .benefit-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* --- FEATURES SECTION --- */
+        .features-list { max-width: 600px; margin: 0 auto; text-align: center; }
+
+        .feature-item {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .feature-item:last-child { border-bottom: none; }
+        .feature-check { color: var(--accent); font-size: 1.2rem; flex-shrink: 0; }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { padding: 60px 0 40px; }
+            .form-card { padding: 24px; }
+            .section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Biziqly</div>
+            <a href="mailto:hello@biziqly.com" class="nav-link">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- HERO & FORM -->
+    <section class="hero">
+        <div class="container">
+            <div class="eyebrow">🚀 LAUNCHING SOON</div>
+            <h1>Work Smarter. Scale Faster.<br><span>Biziqly is Coming.</span></h1>
+            <p class="hero-sub">We’re building the ultimate platform to elevate your business IQ. Be among the first to experience it. Sign up today to get an exclusive invite to our private beta, test the demo, and help us shape the final product.</p>
+            
+            <!-- REGISTRATION FORM (Formspree Integrated) -->
+            <div class="form-card">
+                <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
+                    <h2 class="form-title">Get Exclusive Beta Access</h2>
+                    <p class="form-subtitle">Join the early adopter list and be the first to try Biziqly.</p>
+                    
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="John" data-fs-field required>
+                        <span data-fs-error="firstName" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Work Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@company.com" data-fs-field required>
+                        <span data-fs-error="email" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company Name <span style="color: var(--text-secondary); font-weight: 400;">(Optional)</span></label>
+                        <input type="text" id="company" name="company" placeholder="Acme Corp" data-fs-field>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bottleneck">What’s your biggest business bottleneck right now?</label>
+                        <select id="bottleneck" name="bottleneck" data-fs-field required>
+                            <option value="" disabled selected>Select an option...</option>
+                            <option value="workflow">Workflow & Task Management</option>
+                            <option value="data">Data Tracking & Analytics</option>
+                            <option value="team">Team Collaboration & Communication</option>
+                            <option value="automation">Lack of Automation</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span data-fs-error="bottleneck" class="field-error"></span>
+                    </div>
+
+                    <button type="submit" data-fs-submit-btn class="btn-primary">Claim My Beta Invite</button>
+                    
+                    <!-- Form-level error message -->
+                    <div data-fs-error class="form-error-message"></div>
+                    
+                    <p class="microcopy">🔒 No spam, ever. We’ll only email you when your exclusive demo link is ready.</p>
+                </form>
+
+                <!-- SUCCESS STATE (Managed by Formspree AJAX) -->
+                <div data-fs-success class="success-message">
+                    <div class="success-icon">🎉</div>
+                    <h3>You're on the list!</h3>
+                    <p style="color: var(--text-secondary);">We're putting the finishing touches on the beta. Keep an eye on your inbox—we'll send your exclusive demo link as soon as it's live.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY JOIN SECTION -->
+    <section class="section benefits">
+        <div class="container">
+            <h2 class="section-title">Why become an early tester?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔑</div>
+                    <h3>Exclusive Early Access</h3>
+                    <p>Skip the public waitlist. Get a direct demo link to test the beta before we officially launch to the public.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💡</div>
+                    <h3>Shape the Product</h3>
+                    <p>Your feedback directly influences our roadmap. Tell us what you love, what you hate, and what features you want next.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Founding Member Perks</h3>
+                    <p>Early testers who provide valuable feedback will be rewarded with exclusive lifetime discounts and "Founding Member" status.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT TO EXPECT SECTION -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">What to expect from Biziqly</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px;">We are streamlining the way you manage, analyze, and grow your business.</p>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <span class="feature-check">✨</span>
+                    <span>Intelligent Workflow Automation to eliminate repetitive tasks</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-check">✨</span>
+                    <span>Real-time Business Analytics to make data-driven decisions</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-check">✨</span>
+                    <span>Seamless Team Collaboration to keep everyone aligned</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Biziqly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FORMSPREE AJAX INTEGRATION -->
+    <script>
+        // Initialize Formspree global object
+        window.formspree = window.formspree || function () { 
+            (formspree.q = formspree.q || []).push(arguments); 
+        };
+        
+        // Initialize the specific form
+        formspree('initForm', { 
+            formElement: '#beta-form', 
+            formId: 'xgaodwve' 
+        });
+    </script>
+    <!-- Load Formspree AJAX library -->
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
