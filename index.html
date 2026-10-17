@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biziqly | Predictive Business Intelligence Platform</title>
-    <meta name="description" content="Biziqly is a predictive analytics business development platform. Request early beta access.">
+    <title>BizIQly | Business Intelligence Platform</title>
+    <meta name="description" content="BizIQly is a business intelligence platform that unifies workflow automation, analytics, and team collaboration. Request early beta access.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg-white: #FFFFFF;
             --bg-accent: #8A1C32; /* Burgundy */
             --bg-accent-dark: #6B1225;
+            --bg-accent-light: rgba(138, 28, 50, 0.08);
             --text-primary: #0A0A0A;
             --text-secondary: #555555;
             --text-light: #FFFFFF;
             --border: #E0E0E0;
             --card-bg: #FFFFFF;
-            --navy: #1A1F3A;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,7 +46,7 @@
             color: var(--text-primary);
         }
 
-        .top-bar .left { max-width: 280px; line-height: 1.4; }
+        .top-bar .left { max-width: 320px; line-height: 1.4; }
         .top-bar .center { text-align: center; }
         .top-bar .right { text-align: right; }
 
@@ -57,12 +57,43 @@
             min-height: 480px;
             display: flex;
             align-items: center;
+            overflow: hidden;
+        }
+
+        /* Burgundy soft gradient flair */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: 10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(138, 28, 50, 0.15) 0%, rgba(138, 28, 50, 0.05) 40%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(138, 28, 50, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .hero-content {
             flex: 1;
             max-width: 620px;
             z-index: 2;
+            position: relative;
         }
 
         .hero h1 {
@@ -81,6 +112,7 @@
             right: 0;
             bottom: 0;
             pointer-events: none;
+            z-index: 1;
         }
 
         .tag {
@@ -111,10 +143,10 @@
         .tag-3 { top: 52%; left: 48%; transform: rotate(-2deg); }
         .tag-4 { top: 72%; left: 30%; transform: rotate(3deg); font-size: 0.8rem; }
 
-        /* Connector lines (decorative) */
+        /* Connector lines */
         .connector {
             position: absolute;
-            border: 1px dashed rgba(138, 28, 50, 0.3);
+            border: 1px dashed rgba(138, 28, 50, 0.25);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -128,6 +160,7 @@
             height: 260px;
             margin-left: auto;
             flex-shrink: 0;
+            z-index: 2;
         }
 
         .venn-circle {
@@ -141,7 +174,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.6);
         }
 
         .venn-circle .number {
@@ -197,7 +230,6 @@
             border-radius: 50%;
             background: #E0E0E0;
         }
-
         .browser-dot:nth-child(1) { background: #FF5F57; }
         .browser-dot:nth-child(2) { background: #FFBD2E; }
         .browser-dot:nth-child(3) { background: #28C840; }
@@ -225,25 +257,29 @@
         .mockup-left {
             position: relative;
             padding: 40px;
-            background: linear-gradient(135deg, #F8F4F5 0%, #FFFFFF 100%);
+            background: linear-gradient(135deg, #FBF4F5 0%, #FFFFFF 100%);
         }
 
+        /* BizIQly Logo inside mockup */
         .mockup-logo {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 32px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 2px;
         }
 
-        .mockup-logo .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--bg-accent);
-            border-radius: 50%;
+        .mockup-logo .biz { color: var(--text-primary); }
+        .mockup-logo .iq {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--bg-accent);
+            letter-spacing: -0.02em;
         }
+        .mockup-logo .ly { color: var(--text-primary); }
 
         /* Floating data cards */
         .data-card {
@@ -254,6 +290,14 @@
             padding: 16px 20px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             min-width: 180px;
+        }
+
+        .data-card .label-top {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
         }
 
         .data-card .name {
@@ -280,9 +324,10 @@
             margin-top: 8px;
             font-size: 0.7rem;
             padding: 3px 8px;
-            background: #F0F0F0;
+            background: var(--bg-accent-light);
+            color: var(--bg-accent);
             border-radius: 3px;
-            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .data-card .progress-bar {
@@ -290,7 +335,7 @@
             height: 4px;
             background: #E8E8E8;
             border-radius: 2px;
-            margin-top: 10px;
+            margin-top: 8px;
             overflow: hidden;
         }
 
@@ -335,7 +380,11 @@
         .mockup-nav a {
             color: var(--text-secondary);
             text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
         }
+
+        .mockup-nav a:hover { color: var(--bg-accent); }
 
         .mockup-nav .btn-nav {
             border: 1px solid var(--border);
@@ -358,15 +407,15 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             line-height: 1.6;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
         /* Inline form */
         .inline-form {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
 
         .inline-form input, .inline-form select {
@@ -392,7 +441,7 @@
         .field-error {
             color: #B12704;
             font-size: 0.75rem;
-            margin-top: -8px;
+            margin-top: -6px;
         }
 
         .form-error-message {
@@ -418,14 +467,8 @@
             font-family: inherit;
         }
 
-        .btn-submit:hover:not(:disabled) {
-            background: var(--bg-accent-dark);
-        }
-
-        .btn-submit:disabled {
-            background: #CCCCCC;
-            cursor: not-allowed;
-        }
+        .btn-submit:hover:not(:disabled) { background: var(--bg-accent-dark); }
+        .btn-submit:disabled { background: #CCCCCC; cursor: not-allowed; }
 
         .success-message {
             display: none;
@@ -467,6 +510,81 @@
             line-height: 1.3;
         }
 
+        /* --- LOGIN MODAL --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 48px 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover { background: #F5F5F5; }
+
+        .modal h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .modal .btn-modal {
+            background: var(--bg-accent);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .modal .btn-modal:hover { background: var(--bg-accent-dark); }
+
         /* --- FOOTER --- */
         footer {
             background: var(--bg-accent-dark);
@@ -492,6 +610,7 @@
             
             .tag { display: none; }
             .connector { display: none; }
+            .hero::before, .hero::after { display: none; }
         }
     </style>
 </head>
@@ -499,7 +618,7 @@
 
     <!-- TOP BAR -->
     <div class="top-bar">
-        <div class="left">Biziqly is a predictive analytics business development platform</div>
+        <div class="left">BizIQly is a business intelligence platform for workflow automation, analytics, and team collaboration</div>
         <div class="center">Beta Program</div>
         <div class="right">Early Access 2026</div>
     </div>
@@ -507,17 +626,17 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Business<br>development<br>platform</h1>
+            <h1>Business<br>intelligence<br>platform</h1>
         </div>
 
         <!-- Floating Tags -->
         <div class="tags-container">
             <div class="connector connector-1"></div>
             <div class="connector connector-2"></div>
-            <div class="tag tag-1">FinTech</div>
-            <div class="tag tag-2">Software</div>
-            <div class="tag tag-3">Artificial Intelligence</div>
-            <div class="tag tag-4">Active leads</div>
+            <div class="tag tag-1">Workflow</div>
+            <div class="tag tag-2">Analytics</div>
+            <div class="tag tag-3">Collaboration</div>
+            <div class="tag tag-4">Automation</div>
         </div>
 
         <!-- Venn Diagram -->
@@ -552,48 +671,55 @@
             <div class="mockup-content">
                 <!-- Left: Floating cards -->
                 <div class="mockup-left">
-                    <div class="mockup-logo"><span class="dot"></span> BIZIQLY</div>
+                    <div class="mockup-logo">
+                        <span class="biz">Biz</span><span class="iq">IQ</span><span class="ly">ly</span>
+                    </div>
 
                     <div class="data-card card-1">
-                        <div class="name">Jordan Wentworth</div>
-                        <div class="location">Boston, MA</div>
-                        <div class="amount">$1,293,200</div>
-                        <div class="status">Contacted</div>
+                        <div class="label-top">Active Workflow</div>
+                        <div class="name">Q4 Revenue Pipeline</div>
+                        <div class="location">12 tasks · 3 team members</div>
+                        <div class="amount">87% complete</div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 87%;"></div></div>
                     </div>
 
                     <div class="data-card card-2">
+                        <div class="label-top">Analytics Snapshot</div>
+                        <div class="name">Monthly Performance</div>
+                        <div class="amount">+24.3%</div>
+                        <div class="location">vs. previous period</div>
+                        <div class="status">On track</div>
+                    </div>
+
+                    <div class="data-card card-3">
+                        <div class="label-top">Team Activity</div>
                         <div class="name">Ciera Thomas</div>
-                        <div class="location">Pipeline Stage 3</div>
+                        <div class="location">3 tasks completed today</div>
                         <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
                         <div class="progress-bar" style="margin-top:6px;"><div class="progress-fill" style="width: 60%;"></div></div>
                         <div class="progress-bar" style="margin-top:6px;"><div class="progress-fill" style="width: 85%;"></div></div>
                     </div>
 
-                    <div class="data-card card-3">
-                        <div class="name">Mihail Lacusta</div>
-                        <div class="location">Business Lead</div>
-                        <div class="amount">$1,129,039</div>
-                    </div>
-
                     <div class="data-card card-4">
+                        <div class="label-top">Automated Report</div>
                         <div class="name">2 days ago</div>
-                        <div class="amount" style="font-size: 1rem;">$1,129,039</div>
-                        <div class="status">Contacted</div>
+                        <div class="amount">$1,129,039</div>
+                        <div class="status">Delivered</div>
                     </div>
 
-                    <div class="tag-small tag-small-1">Active leads</div>
+                    <div class="tag-small tag-small-1">Live dashboard</div>
                 </div>
 
                 <!-- Right: Registration form -->
-                <div class="mockup-right">
+                <div class="mockup-right" id="register-section">
                     <div class="mockup-nav">
-                        <a href="#">Sign up</a>
-                        <a href="#" class="btn-nav">Log in →</a>
+                        <a href="#" id="register-link">Register</a>
+                        <a href="#" class="btn-nav" id="login-link">Log in →</a>
                     </div>
 
                     <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
                         <h2>Request early<br>beta access</h2>
-                        <p class="subtitle">Biziqly is a predictive analytics platform used by business professionals to grow their operations. Join the private beta.</p>
+                        <p class="subtitle">BizIQly unifies workflow automation, real-time analytics, and team collaboration into one intelligent platform. Register below to receive your private demo link.</p>
 
                         <div class="inline-form">
                             <input type="text" name="firstName" placeholder="Full name" data-fs-field required>
@@ -602,14 +728,37 @@
                             <input type="email" name="email" placeholder="Work email" data-fs-field required>
                             <span data-fs-error="email" class="field-error"></span>
 
-                            <select name="bottleneck" data-fs-field required>
-                                <option value="" disabled selected>Area of interest</option>
-                                <option value="workflow">Workflow Automation</option>
-                                <option value="data">Advanced Analytics</option>
-                                <option value="team">Team Collaboration</option>
+                            <input type="text" name="company" placeholder="Company name" data-fs-field required>
+                            <span data-fs-error="company" class="field-error"></span>
+
+                            <select name="industry" data-fs-field required>
+                                <option value="" disabled selected>Industry</option>
+                                <option value="saas">SaaS / Technology</option>
+                                <option value="finance">Finance / Fintech</option>
+                                <option value="ecommerce">E-commerce / Retail</option>
+                                <option value="consulting">Consulting / Agency</option>
                                 <option value="other">Other</option>
                             </select>
-                            <span data-fs-error="bottleneck" class="field-error"></span>
+                            <span data-fs-error="industry" class="field-error"></span>
+
+                            <select name="teamSize" data-fs-field required>
+                                <option value="" disabled selected>Team size</option>
+                                <option value="1-5">1–5 people</option>
+                                <option value="6-20">6–20 people</option>
+                                <option value="21-50">21–50 people</option>
+                                <option value="51+">51+ people</option>
+                            </select>
+                            <span data-fs-error="teamSize" class="field-error"></span>
+
+                            <select name="challenge" data-fs-field required>
+                                <option value="" disabled selected>Primary challenge</option>
+                                <option value="workflow">Workflow & task management</option>
+                                <option value="data">Data tracking & analytics</option>
+                                <option value="team">Team collaboration</option>
+                                <option value="automation">Lack of automation</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span data-fs-error="challenge" class="field-error"></span>
                         </div>
 
                         <button type="submit" data-fs-submit-btn class="btn-submit">Request Beta Access →</button>
@@ -618,7 +767,7 @@
 
                     <div data-fs-success class="success-message">
                         <h3>Request received</h3>
-                        <p>We'll send your private demo link shortly.</p>
+                        <p>We'll send your private demo link to your inbox shortly.</p>
                     </div>
                 </div>
             </div>
@@ -627,15 +776,15 @@
             <div class="mockup-stats">
                 <div class="stat-item">
                     <div class="stat-number">400mm+</div>
-                    <div class="stat-label">Data points used<br>for analytics</div>
+                    <div class="stat-label">Data points processed<br>for business analytics</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">$3Tn</div>
-                    <div class="stat-label">Investable assets<br>predicted per year</div>
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Workflows automated<br>across beta testers</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">$77Bn</div>
-                    <div class="stat-label">Predicted home value<br>transacted per year</div>
+                    <div class="stat-number">3.2x</div>
+                    <div class="stat-label">Average productivity<br>increase reported</div>
                 </div>
             </div>
         </div>
@@ -643,8 +792,18 @@
 
     <!-- FOOTER -->
     <footer>
-        © 2026 Biziqly. All rights reserved.
+        © 2026 BizIQly. All rights reserved.
     </footer>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">×</button>
+            <h3>Coming live soon</h3>
+            <p>The full BizIQly platform is currently in private beta. Login will be available once we launch publicly. In the meantime, register for early access to receive your demo link.</p>
+            <button class="btn-modal" id="modal-cta">Go to early access →</button>
+        </div>
+    </div>
 
     <!-- FORMSPREE AJAX -->
     <script>
@@ -654,6 +813,37 @@
         formspree('initForm', { 
             formElement: '#beta-form', 
             formId: 'xgaodwve' 
+        });
+
+        // Modal logic
+        const loginLink = document.getElementById('login-link');
+        const modal = document.getElementById('login-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalCta = document.getElementById('modal-cta');
+        const registerLink = document.getElementById('register-link');
+        const registerSection = document.getElementById('register-section');
+
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+
+        modalClose.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+
+        modalCta.addEventListener('click', function() {
+            modal.classList.remove('active');
+            registerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        registerLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
