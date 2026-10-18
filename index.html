@@ -6,10 +6,10 @@
     <title>BizIQly | Premium Business Infrastructure</title>
     <meta name="description" content="The premium digital ecosystem for businesses. Free verified storefronts, Times Square advertising, and one-time website ownership.">
     
-    <!-- Inter for clean UI, Playfair Display for the luxury "IQ" accent -->
+    <!-- Inter for clean UI, Italiana for the luxury, unmistakable "IQ" accent -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Italiana&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -47,11 +47,11 @@
         }
 
         .brand-iq {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 700;
+            font-family: 'Italiana', serif; /* Elegant, clear serif. 'I' cannot be mistaken for '1' */
+            font-weight: 400;
             color: var(--bg-accent);
-            letter-spacing: 0.02em;
+            font-size: 1.65rem;
+            letter-spacing: 0.04em;
             margin: 0 1px;
         }
 
@@ -60,13 +60,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 28px 48px;
+            padding: 24px 48px;
             font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--text-secondary);
             border-bottom: 1px solid var(--border);
+            position: relative;
         }
 
         .top-bar .center { 
@@ -75,23 +76,148 @@
             font-size: 0.75rem;
         }
 
+        /* Hamburger Button */
+        .hamburger-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .hamburger-btn:hover {
+            border-color: var(--bg-accent);
+            background: var(--bg-accent-soft);
+        }
+
+        .hamburger-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* --- DEVELOPER SLIDE-OUT PANEL --- */
+        .dev-panel-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dev-panel-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dev-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 90vw;
+            height: 100vh;
+            background: var(--bg-white);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            z-index: 999;
+            padding: 48px 32px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dev-panel.active {
+            right: 0;
+        }
+
+        .dev-panel-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .dev-panel-close:hover { background: var(--border); }
+
+        .dev-panel h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .dev-panel .role {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--bg-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .dev-panel p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .dev-panel .divider {
+            width: 40px;
+            height: 2px;
+            background: var(--bg-accent);
+            margin-bottom: 24px;
+        }
+
+        .dev-panel .contact-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .dev-panel .contact-info a {
+            color: var(--bg-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
-            padding: 60px 48px 80px;
-            min-height: 520px;
+            padding: 60px 48px 100px;
+            min-height: 600px;
             display: flex;
             align-items: center;
+            overflow: hidden;
         }
 
         .hero-content {
             flex: 1;
-            max-width: 600px;
+            max-width: 550px;
             z-index: 2;
         }
 
         .hero h1 {
-            font-size: clamp(3.2rem, 6vw, 5rem);
+            font-size: clamp(3rem, 5.5vw, 4.5rem);
             font-weight: 800;
             line-height: 1.05;
             letter-spacing: -0.03em;
@@ -107,7 +233,7 @@
             max-width: 480px;
         }
 
-        /* Floating Feature Flyers (Left Side) */
+        /* Floating Feature Flyers (Right Side) */
         .flyers-container {
             position: absolute;
             top: 0;
@@ -122,7 +248,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             padding: 16px 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-primary);
@@ -132,11 +258,13 @@
             gap: 12px;
             pointer-events: auto;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 240px;
         }
 
         .flyer:hover {
-            transform: translateY(-4px) !important;
+            transform: translateY(-4px) scale(1.02) !important;
             box-shadow: var(--shadow-deep);
+            border-color: var(--bg-accent);
         }
 
         .flyer-icon {
@@ -157,20 +285,23 @@
         .flyer-title { font-weight: 700; font-size: 0.85rem; color: var(--text-primary); }
         .flyer-sub { font-size: 0.7rem; color: var(--text-secondary); font-weight: 400; margin-top: 2px; }
 
-        .flyer-1 { top: 15%; left: 40%; transform: rotate(-3deg); }
-        .flyer-2 { top: 35%; left: 45%; transform: rotate(2deg); }
-        .flyer-3 { top: 55%; left: 38%; transform: rotate(-1deg); }
-        .flyer-4 { top: 75%; left: 48%; transform: rotate(3deg); }
+        /* Distributed across the right empty space */
+        .flyer-1 { top: 12%; left: 55%; transform: rotate(-2deg); }
+        .flyer-2 { top: 28%; left: 72%; transform: rotate(3deg); }
+        .flyer-3 { top: 48%; left: 60%; transform: rotate(-1deg); }
+        .flyer-4 { top: 65%; left: 75%; transform: rotate(2deg); }
+        .flyer-5 { top: 18%; left: 85%; transform: rotate(-3deg); }
+        .flyer-6 { top: 78%; left: 58%; transform: rotate(1deg); }
 
         /* Connector lines (decorative) */
         .connector {
             position: absolute;
-            border: 1px dashed rgba(138, 28, 50, 0.2);
+            border: 1px dashed rgba(138, 28, 50, 0.15);
             border-radius: 50%;
             pointer-events: none;
         }
-        .connector-1 { width: 160px; height: 160px; top: 10%; left: 38%; }
-        .connector-2 { width: 200px; height: 200px; top: 50%; left: 36%; }
+        .connector-1 { width: 300px; height: 300px; top: 5%; left: 50%; }
+        .connector-2 { width: 400px; height: 400px; top: 40%; left: 55%; }
 
         /* --- MOCKUP SECTION (Burgundy background) --- */
         .mockup-section {
@@ -237,11 +368,8 @@
             justify-content: center;
         }
 
-        .mockup-logo {
-            margin-bottom: 40px;
-        }
+        .mockup-logo { margin-bottom: 40px; }
 
-        /* Mockup right - Form area */
         .mockup-right {
             padding: 48px 48px;
             display: flex;
@@ -263,6 +391,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s;
+            cursor: pointer;
         }
         .mockup-nav a:hover { color: var(--bg-accent); }
 
@@ -424,7 +553,7 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .top-bar { flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
-            .top-bar .left, .top-bar .center, .top-bar .right { text-align: center; }
+            .top-bar .left, .top-bar .center, .top-bar .right { text-align: center; width: 100%; display: flex; justify-content: space-between; align-items: center; }
             
             .hero { flex-direction: column; padding: 40px 24px 60px; text-align: center; }
             .hero-content { margin: 0 auto; }
@@ -450,7 +579,33 @@
             <span class="brand-logo">Biz<span class="brand-iq">IQ</span>ly</span>
         </div>
         <div class="center">Beta Program</div>
-        <div class="right">Early Access 2026</ each></div>
+        <div class="right">
+            <span style="margin-right: 16px; display: inline-block;">Early Access 2026</span>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Open developer info">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- DEVELOPER SLIDE-OUT PANEL -->
+    <div class="dev-panel-overlay" id="dev-panel-overlay"></div>
+    <div class="dev-panel" id="dev-panel">
+        <button class="dev-panel-close" id="dev-panel-close">×</button>
+        <h3>Ifaponmile Ogundehinde</h3>
+        <div class="role">Lead Developer & Architect</div>
+        <div class="divider"></div>
+        <p>
+            Crafting premium, sovereign digital ecosystems for modern businesses. 
+            Dedicated to building infrastructure that eliminates subscription traps and empowers true digital ownership.
+        </p>
+        <div class="contact-info">
+            <p>Connecting vision with execution.</p>
+            <p style="margin-top: 12px;">
+                <a href="mailto:dev@biziqly.com">dev@biziqly.com</a>
+            </p>
+        </div>
     </div>
 
     <!-- HERO -->
@@ -460,7 +615,7 @@
             <p>Claim your verified digital storefront, advertise in our exclusive Times Square network, and graduate to full website ownership. Zero monthly fees.</p>
         </div>
 
-        <!-- Floating Feature Flyers -->
+        <!-- Floating Feature Flyers (Distributed to fill empty space) -->
         <div class="flyers-container">
             <div class="connector connector-1"></div>
             <div class="connector connector-2"></div>
@@ -508,6 +663,28 @@
                     <span class="flyer-sub">Own your domain</span>
                 </div>
             </div>
+
+            <!-- Flyer 5: Analytics (NEW) -->
+            <div class="flyer flyer-5">
+                <div class="flyer-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                </div>
+                <div class="flyer-text">
+                    <span class="flyer-title">Real-time Analytics</span>
+                    <span class="flyer-sub">Data-driven growth</span>
+                </div>
+            </div>
+
+            <!-- Flyer 6: Secure Payments (NEW) -->
+            <div class="flyer flyer-6">
+                <div class="flyer-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                </div>
+                <div class="flyer-text">
+                    <span class="flyer-title">Secure Payments</span>
+                    <span class="flyer-sub">Enterprise-grade security</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -538,8 +715,8 @@
                 <!-- Right: Comprehensive Registration form -->
                 <div class="mockup-right">
                     <div class="mockup-nav">
-                        <a href="#">Log in</a>
-                        <a href="#" class="btn-nav">Request Access</a>
+                        <a id="login-link">Log in</a>
+                        <a href="#register" class="btn-nav">Request Access</a>
                     </div>
 
                     <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
@@ -629,11 +806,12 @@
     <!-- FOOTER -->
     <footer>
         &copy; 2026 BizIQly. All rights reserved.
-        <div class="powered-by">Powered by FameCore Technologies</div each>
+        <div class="powered-by">Powered by FameCore Technologies</div>
     </footer>
 
-    <!-- FORMSPREE AJAX -->
+    <!-- FORMSPREE AJAX & MODAL LOGIC -->
     <script>
+        // Formspree Init
         window.formspree = window.formspree || function () { 
             (formspree.q = formspree.q || []).push(arguments); 
         };
@@ -641,6 +819,44 @@
             formElement: '#beta-form', 
             formId: 'xgaodwve' 
         });
+
+        // Developer Panel Logic
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const devPanel = document.getElementById('dev-panel');
+        const devPanelOverlay = document.getElementById('dev-panel-overlay');
+        const devPanelClose = document.getElementById('dev-panel-close');
+
+        function openDevPanel() {
+            devPanel.classList.add('active');
+            devPanelOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeDevPanel() {
+            devPanel.classList.remove('active');
+            devPanelOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburgerBtn.addEventListener('click', openDevPanel);
+        devPanelClose.addEventListener('click', closeDevPanel);
+        devPanelOverlay.addEventListener('click', closeDevPanel);
+
+        // Close panel on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && devPanel.classList.contains('active')) {
+                closeDevPanel();
+            }
+        });
+
+        // Login Link Logic (from previous requests)
+        const loginLink = document.getElementById('login-link');
+        if(loginLink) {
+            loginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Login will be available once the public platform launches. Please request early access below!');
+            });
+        }
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
