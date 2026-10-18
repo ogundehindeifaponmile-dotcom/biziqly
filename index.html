@@ -16,6 +16,7 @@
             --bg-white: #FFFFFF;
             --bg-accent: #8A1C32; /* Luxury Burgundy */
             --bg-accent-dark: #6B1225;
+            --bg-accent-soft: rgba(138, 28, 50, 0.05);
             --text-primary: #0A0A0A;
             --text-secondary: #555555;
             --text-light: #FFFFFF;
@@ -44,6 +45,7 @@
             letter-spacing: -0.03em;
             display: inline-flex;
             align-items: center;
+            text-decoration: none;
         }
 
         .brand-iq {
@@ -67,7 +69,6 @@
             text-transform: uppercase;
             color: var(--text-secondary);
             border-bottom: 1px solid var(--border);
-            position: relative;
         }
 
         .top-bar .center { 
@@ -103,8 +104,8 @@
             transition: all 0.3s;
         }
 
-        /* --- DEVELOPER SLIDE-OUT PANEL --- */
-        .dev-panel-overlay {
+        /* --- SLIDE-OUT MENU PANEL --- */
+        .menu-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(10, 10, 10, 0.4);
@@ -115,32 +116,32 @@
             transition: all 0.3s ease;
         }
 
-        .dev-panel-overlay.active {
+        .menu-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .dev-panel {
+        .menu-panel {
             position: fixed;
             top: 0;
             right: -400px;
-            width: 380px;
-            max-width: 90vw;
+            width: 360px;
+            max-width: 85vw;
             height: 100vh;
             background: var(--bg-white);
             box-shadow: -10px 0 40px rgba(0,0,0,0.1);
             z-index: 999;
-            padding: 48px 32px;
+            padding: 40px 32px;
             transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
         }
 
-        .dev-panel.active {
+        .menu-panel.active {
             right: 0;
         }
 
-        .dev-panel-close {
+        .menu-close {
             align-self: flex-end;
             background: none;
             border: none;
@@ -157,16 +158,82 @@
             transition: background 0.2s;
         }
 
-        .dev-panel-close:hover { background: var(--border); }
+        .menu-close:hover { background: var(--border); }
 
-        .dev-panel h3 {
+        /* Menu Navigation Links */
+        .menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-nav.hidden {
+            display: none;
+        }
+
+        .menu-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s, padding-left 0.2s;
+            cursor: pointer;
+        }
+
+        .menu-link:hover {
+            color: var(--bg-accent);
+            padding-left: 8px;
+        }
+
+        .menu-link.primary {
+            color: var(--bg-accent);
+            font-weight: 600;
+        }
+
+        /* Developer Info Sub-View */
+        .dev-info-section {
+            display: none;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dev-info-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dev-back {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+            align-self: flex-start;
+        }
+
+        .dev-back:hover { color: var(--bg-accent); }
+
+        .dev-info-section h3 {
             font-family: 'Italiana', serif;
             font-size: 1.8rem;
             color: var(--text-primary);
             margin-bottom: 8px;
         }
 
-        .dev-panel .role {
+        .dev-info-section .role {
             font-size: 0.8rem;
             font-weight: 600;
             color: var(--bg-accent);
@@ -175,29 +242,25 @@
             margin-bottom: 24px;
         }
 
-        .dev-panel p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 32px;
-        }
-
-        .dev-panel .divider {
+        .dev-info-section .divider {
             width: 40px;
             height: 2px;
             background: var(--bg-accent);
             margin-bottom: 24px;
         }
 
-        .dev-panel .contact-info {
-            font-size: 0.85rem;
+        .dev-info-section p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
         }
 
-        .dev-panel .contact-info a {
+        .dev-info-section .contact-info a {
             color: var(--bg-accent);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         /* --- HERO SECTION --- */
@@ -236,10 +299,7 @@
         /* Floating Feature Flyers (Right Side) */
         .flyers-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none;
         }
 
@@ -550,6 +610,72 @@
             text-transform: uppercase;
         }
 
+        /* --- LOGIN MODAL --- */
+        .login-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .login-modal-overlay.active { display: flex; }
+
+        .login-modal {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 48px 40px;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .login-modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: none; border: none;
+            font-size: 1.5rem; cursor: pointer;
+            color: var(--text-secondary);
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+        }
+
+        .login-modal-close:hover { background: var(--border); }
+
+        .login-modal h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .login-modal p {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .btn-modal {
+            background: var(--bg-accent);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-modal:hover { background: var(--bg-accent-dark); }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .top-bar { flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
@@ -576,12 +702,11 @@
     <!-- TOP BAR -->
     <div class="top-bar">
         <div class="left">
-            <span class="brand-logo">Biz<span class="brand-iq">IQ</span>ly</span>
+            <a href="#" class="brand-logo">Biz<span class="brand-iq">IQ</span>ly</a>
         </div>
         <div class="center">Beta Program</div>
         <div class="right">
-            <span style="margin-right: 16px; display: inline-block;">Early Access 2026</span>
-            <button class="hamburger-btn" id="hamburger-btn" aria-label="Open developer info">
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -589,22 +714,33 @@
         </div>
     </div>
 
-    <!-- DEVELOPER SLIDE-OUT PANEL -->
-    <div class="dev-panel-overlay" id="dev-panel-overlay"></div>
-    <div class="dev-panel" id="dev-panel">
-        <button class="dev-panel-close" id="dev-panel-close">×</button>
-        <h3>Ifaponmile Ogundehinde</h3>
-        <div class="role">Lead Developer & Architect</div>
-        <div class="divider"></div>
-        <p>
-            Crafting premium, sovereign digital ecosystems for modern businesses. 
-            Dedicated to building infrastructure that eliminates subscription traps and empowers true digital ownership.
-        </p>
-        <div class="contact-info">
-            <p>Connecting vision with execution.</p>
-            <p style="margin-top: 12px;">
-                <a href="mailto:dev@biziqly.com">dev@biziqly.com</a>
+    <!-- SLIDE-OUT MENU PANEL -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="menu-panel" id="menu-panel">
+        <button class="menu-close" id="menu-close">×</button>
+        
+        <!-- Main Menu Links -->
+        <nav class="menu-nav" id="menu-nav">
+            <a href="#register" class="menu-link primary" onclick="closeMenu()">Request Access</a>
+            <a href="#" class="menu-link" id="menu-login-link" onclick="closeMenu(); showLoginModal()">Log in</a>
+            <a href="mailto:support@biziqly.com" class="menu-link">Contact</a>
+            <a href="#" class="menu-link" id="dev-trigger">Developer</a>
+            <a href="#" class="menu-link">Help</a>
+        </nav>
+        
+        <!-- Developer Info Sub-View -->
+        <div class="dev-info-section" id="dev-info-section">
+            <button class="dev-back" id="dev-back">← Back to menu</button>
+            <h3>Ifaponmile Ogundehinde</h3>
+            <div class="role">Lead Developer & Architect</div>
+            <div class="divider"></div>
+            <p>
+                Crafting premium, sovereign digital ecosystems for modern businesses. 
+                Dedicated to building infrastructure that eliminates subscription traps and empowers true digital ownership.
             </p>
+            <div class="contact-info">
+                <a href="mailto:dev@biziqly.com">dev@biziqly.com</a>
+            </div>
         </div>
     </div>
 
@@ -620,7 +756,6 @@
             <div class="connector connector-1"></div>
             <div class="connector connector-2"></div>
             
-            <!-- Flyer 1: Verification -->
             <div class="flyer flyer-1">
                 <div class="flyer-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
@@ -631,7 +766,6 @@
                 </div>
             </div>
 
-            <!-- Flyer 2: Times Square -->
             <div class="flyer flyer-2">
                 <div class="flyer-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l18-5v12L3 13v-2z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
@@ -642,7 +776,6 @@
                 </div>
             </div>
 
-            <!-- Flyer 3: Zero Fees -->
             <div class="flyer flyer-3">
                 <div class="flyer-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
@@ -653,7 +786,6 @@
                 </div>
             </div>
 
-            <!-- Flyer 4: Domain Migration -->
             <div class="flyer flyer-4">
                 <div class="flyer-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
@@ -664,7 +796,6 @@
                 </div>
             </div>
 
-            <!-- Flyer 5: Analytics (NEW) -->
             <div class="flyer flyer-5">
                 <div class="flyer-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
@@ -675,7 +806,6 @@
                 </div>
             </div>
 
-            <!-- Flyer 6: Secure Payments (NEW) -->
             <div class="flyer flyer-6">
                 <div class="flyer-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
@@ -689,7 +819,7 @@
     </section>
 
     <!-- MOCKUP SECTION -->
-    <section class="mockup-section">
+    <section class="mockup-section" id="register">
         <div class="mockup-wrapper">
             <!-- Browser chrome -->
             <div class="browser-bar">
@@ -715,7 +845,7 @@
                 <!-- Right: Comprehensive Registration form -->
                 <div class="mockup-right">
                     <div class="mockup-nav">
-                        <a id="login-link">Log in</a>
+                        <a href="#" onclick="showLoginModal()">Log in</a>
                         <a href="#register" class="btn-nav">Request Access</a>
                     </div>
 
@@ -809,7 +939,17 @@
         <div class="powered-by">Powered by FameCore Technologies</div>
     </footer>
 
-    <!-- FORMSPREE AJAX & MODAL LOGIC -->
+    <!-- LOGIN MODAL -->
+    <div class="login-modal-overlay" id="login-modal">
+        <div class="login-modal">
+            <button class="login-modal-close" id="login-modal-close">×</button>
+            <h3>Coming live soon</h3>
+            <p>The full BizIQly platform is currently in private beta. Login will be available once we launch publicly. In the meantime, register for early access to receive your demo link.</p>
+            <button class="btn-modal" id="login-modal-cta">Go to early access →</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
     <script>
         // Formspree Init
         window.formspree = window.formspree || function () { 
@@ -820,43 +960,93 @@
             formId: 'xgaodwve' 
         });
 
-        // Developer Panel Logic
+        // Menu Panel Logic
         const hamburgerBtn = document.getElementById('hamburger-btn');
-        const devPanel = document.getElementById('dev-panel');
-        const devPanelOverlay = document.getElementById('dev-panel-overlay');
-        const devPanelClose = document.getElementById('dev-panel-close');
+        const menuPanel = document.getElementById('menu-panel');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuClose = document.getElementById('menu-close');
+        const menuNav = document.getElementById('menu-nav');
+        const devInfoSection = document.getElementById('dev-info-section');
+        const devTrigger = document.getElementById('dev-trigger');
+        const devBack = document.getElementById('dev-back');
 
-        function openDevPanel() {
-            devPanel.classList.add('active');
-            devPanelOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        function openMenu() {
+            menuPanel.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeDevPanel() {
-            devPanel.classList.remove('active');
-            devPanelOverlay.classList.remove('active');
+        function closeMenu() {
+            menuPanel.classList.remove('active');
+            menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            // Reset to main menu view after a short delay
+            setTimeout(() => {
+                menuNav.classList.remove('hidden');
+                devInfoSection.classList.remove('active');
+            }, 300);
         }
 
-        hamburgerBtn.addEventListener('click', openDevPanel);
-        devPanelClose.addEventListener('click', closeDevPanel);
-        devPanelOverlay.addEventListener('click', closeDevPanel);
+        hamburgerBtn.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
 
-        // Close panel on Escape key
+        // Toggle Developer Info
+        devTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            menuNav.classList.add('hidden');
+            devInfoSection.classList.add('active');
+        });
+
+        devBack.addEventListener('click', function() {
+            devInfoSection.classList.remove('active');
+            menuNav.classList.remove('hidden');
+        });
+
+        // Close menu on Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && devPanel.classList.contains('active')) {
-                closeDevPanel();
+            if (e.key === 'Escape') {
+                closeMenu();
+                closeLoginModal();
             }
         });
 
-        // Login Link Logic (from previous requests)
-        const loginLink = document.getElementById('login-link');
-        if(loginLink) {
-            loginLink.addEventListener('click', function(e) {
+        // Login Modal Logic
+        const loginModal = document.getElementById('login-modal');
+        const loginModalClose = document.getElementById('login-modal-close');
+        const loginModalCta = document.getElementById('login-modal-cta');
+
+        function showLoginModal() {
+            loginModal.classList.add('active');
+        }
+
+        function closeLoginModal() {
+            loginModal.classList.remove('active');
+        }
+
+        document.getElementById('menu-login-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showLoginModal();
+        });
+
+        // Mockup right side login link
+        const mockupLoginLink = document.querySelector('.mockup-nav a:first-child');
+        if(mockupLoginLink) {
+            mockupLoginLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('Login will be available once the public platform launches. Please request early access below!');
+                showLoginModal();
             });
         }
+
+        loginModalClose.addEventListener('click', closeLoginModal);
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === this) closeLoginModal();
+        });
+
+        loginModalCta.addEventListener('click', function() {
+            closeLoginModal();
+            document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
