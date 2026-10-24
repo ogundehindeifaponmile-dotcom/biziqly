@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizIQly | Early Access</title>
+    <title>BizIQly | The Super App for Digital Presence & Wealth</title>
     <meta name="description" content="Join the waitlist for the ultimate Super App for business, creators, and finance.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Added Dancing Script for the bold cursive IQ -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
     <style>
@@ -53,7 +52,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* NEW Cursive Bold Font for IQ */
         .brand-iq {
             font-family: 'Dancing Script', cursive;
             font-weight: 700;
@@ -86,7 +84,7 @@
 
         .form-wrapper {
             width: 100%;
-            max-width: 680px;
+            max-width: 720px;
             background: var(--bg-white);
             border-radius: 24px;
             box-shadow: var(--shadow-md);
@@ -98,6 +96,7 @@
         /* --- PROGRESS BAR --- */
         .progress-container {
             padding: 32px 48px 0;
+            display: none; /* Hidden on Step 0 */
         }
 
         .progress-bar-bg {
@@ -123,14 +122,12 @@
             color: var(--text-secondary);
         }
 
-        .step-indicator span.active {
-            color: var(--bg-accent);
-        }
+        .step-indicator span.active { color: var(--bg-accent); }
 
         /* --- FORM CONTENT --- */
         .form-content {
             padding: 48px;
-            min-height: 450px;
+            min-height: 500px;
             display: flex;
             flex-direction: column;
         }
@@ -157,31 +154,106 @@
         }
 
         .step-header h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--text-primary);
+            line-height: 1.2;
         }
 
         .step-header p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        .hint-text {
-            text-align: center;
-            font-size: 0.75rem;
+        /* --- STEP 0: INTRO CARDS --- */
+        .system-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .info-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-card-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--bg-accent);
-            font-weight: 600;
-            margin-top: -16px;
-            margin-bottom: 24px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .info-card-icon svg { width: 18px; height: 18px; stroke-width: 2; }
+
+        .info-card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .info-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .benefits-box {
+            background: #FDF8F9;
+            border: 1px solid rgba(138, 28, 50, 0.15);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .benefits-box h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--bg-accent);
+            margin-bottom: 16px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        /* --- SELECTION CARDS --- */
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .benefit-item:last-child { margin-bottom: 0; }
+
+        .benefit-check {
+            color: var(--bg-accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* --- SELECTION CARDS (Steps 1 & 2) --- */
         .card-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -189,9 +261,7 @@
             margin-bottom: 32px;
         }
 
-        .card-grid.single-col {
-            grid-template-columns: 1fr;
-        }
+        .card-grid.single-col { grid-template-columns: 1fr; }
 
         .select-card {
             border: 1.5px solid var(--border);
@@ -212,7 +282,6 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* Multi-select active state */
         .select-card.selected {
             border-color: var(--bg-accent);
             background: #FDF8F9;
@@ -237,30 +306,24 @@
             color: white;
         }
 
-        .card-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke-width: 2;
-        }
+        .card-icon svg { width: 20px; height: 20px; stroke-width: 2; }
 
-        .card-text h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-        }
+        .card-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+        .card-text p { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.3; }
 
-        .card-text p {
+        .hint-text {
+            text-align: center;
             font-size: 0.75rem;
-            color: var(--text-secondary);
-            line-height: 1.3;
+            color: var(--bg-accent);
+            font-weight: 600;
+            margin-top: -16px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* --- INPUT FIELDS --- */
-        .input-group {
-            margin-bottom: 20px;
-        }
-
+        .input-group { margin-bottom: 20px; }
         .input-group label {
             display: block;
             font-size: 0.75rem;
@@ -308,31 +371,16 @@
             font-family: inherit;
         }
 
-        .btn-secondary {
-            background: var(--bg-light);
-            color: var(--text-primary);
-        }
+        .btn-secondary { background: var(--bg-light); color: var(--text-primary); }
+        .btn-secondary:hover { background: #EAEAEA; }
 
-        .btn-secondary:hover {
-            background: #EAEAEA;
-        }
-
-        .btn-primary {
-            background: var(--bg-accent);
-            color: white;
-            flex: 1;
-        }
-
+        .btn-primary { background: var(--bg-accent); color: white; flex: 1; }
         .btn-primary:hover:not(:disabled) {
             background: var(--bg-accent-hover);
             transform: translateY(-1px);
             box-shadow: var(--shadow-md);
         }
-
-        .btn-primary:disabled {
-            background: #D1D1D1;
-            cursor: not-allowed;
-        }
+        .btn-primary:disabled { background: #D1D1D1; cursor: not-allowed; }
 
         /* --- SUCCESS STATE --- */
         .success-state {
@@ -358,24 +406,11 @@
             animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
+        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
 
-        .success-state h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
+        .success-state h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+        .success-state p { color: var(--text-secondary); line-height: 1.6; max-width: 400px; }
 
-        .success-state p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            max-width: 400px;
-        }
-
-        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 24px;
@@ -383,18 +418,13 @@
             color: var(--text-secondary);
             border-top: 1px solid var(--border);
         }
+        footer strong { color: var(--text-primary); font-weight: 600; }
 
-        footer strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* --- RESPONSIVE --- */
         @media (max-width: 600px) {
             header { padding: 20px 24px; }
             .form-content { padding: 32px 24px; }
             .progress-container { padding: 24px 24px 0; }
-            .card-grid { grid-template-columns: 1fr; }
+            .card-grid, .system-grid { grid-template-columns: 1fr; }
             .step-header h2 { font-size: 1.5rem; }
         }
     </style>
@@ -408,7 +438,7 @@
 
     <main>
         <div class="form-wrapper">
-            <!-- Progress Bar -->
+            <!-- Progress Bar (Hidden on Step 0) -->
             <div class="progress-container" id="progress-container">
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill" id="progress-fill"></div>
@@ -423,8 +453,67 @@
             <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
                 <div class="form-content">
                     
+                    <!-- STEP 0: THE HOOK (Welcome & Benefits) -->
+                    <div class="step active" id="step-0">
+                        <div class="step-header">
+                            <h2>One App. Your Entire Digital Empire.</h2>
+                            <p>Stop juggling 5 different apps and paying monthly subscriptions. BizIQly is the unified Super App for your business, your brand, and your wealth.</p>
+                        </div>
+
+                        <div class="system-grid">
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
+                                </div>
+                                <h4>The Storefront</h4>
+                                <p>Sell products, services, or digital assets. Get your own verified URL instantly.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                </div>
+                                <h4>The Social Feed</h4>
+                                <p>Post promos, build a following, and run ads in our premium Times Square.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg>
+                                </div>
+                                <h4>The Wallet</h4>
+                                <p>Manage fiat (USD, NGN, EUR) and crypto (USDT, BTC) in one secure place.</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                </div>
+                                <h4>The Marketplace</h4>
+                                <p>Get discovered by millions. Browse, shop, and connect globally.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefits-box">
+                            <h3>How this benefits your life:</h3>
+                            <div class="benefit-item">
+                                <svg class="benefit-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Zero Monthly Fees:</strong> Start completely free. No hidden traps.</span>
+                            </div>
+                            <div class="benefit-item">
+                                <svg class="benefit-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Instant Global Payouts:</strong> Get paid directly to your bank or crypto wallet.</span>
+                            </div>
+                            <div class="benefit-item">
+                                <svg class="benefit-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Total Ownership:</strong> Upgrade to your own custom domain anytime.</span>
+                            </div>
+                        </div>
+
+                        <div class="button-row">
+                            <button type="button" class="btn btn-primary" onclick="nextStep(1)">Get Started →</button>
+                        </div>
+                    </div>
+
                     <!-- STEP 1: IDENTITY (Multi-select) -->
-                    <div class="step active" id="step-1">
+                    <div class="step" id="step-1">
                         <div class="step-header">
                             <h2>Who are you?</h2>
                             <p>Select the profiles that best describe you.</p>
@@ -433,67 +522,33 @@
                         
                         <div class="card-grid">
                             <div class="select-card" data-value="business_owner" onclick="toggleCard(this, 'identity')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Business Owner</h4>
-                                    <p>Retail, food, services, agencies.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+                                <div class="card-text"><h4>Business Owner</h4><p>Retail, food, services, agencies.</p></div>
                             </div>
-
                             <div class="select-card" data-value="creator" onclick="toggleCard(this, 'identity')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Creator / Artist</h4>
-                                    <p>Musicians, designers, influencers.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
+                                <div class="card-text"><h4>Creator / Artist</h4><p>Musicians, designers, influencers.</p></div>
                             </div>
-
                             <div class="select-card" data-value="professional" onclick="toggleCard(this, 'identity')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Professional</h4>
-                                    <p>Doctors, lawyers, bankers, consultants.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+                                <div class="card-text"><h4>Professional</h4><p>Doctors, lawyers, bankers, consultants.</p></div>
                             </div>
-
                             <div class="select-card" data-value="tech_web3" onclick="toggleCard(this, 'identity')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Tech / Web3</h4>
-                                    <p>Developers, crypto, digital assets.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+                                <div class="card-text"><h4>Tech / Web3</h4><p>Developers, crypto, digital assets.</p></div>
                             </div>
-
                             <div class="select-card" data-value="public_figure" onclick="toggleCard(this, 'identity')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Public Figure</h4>
-                                    <p>Politicians, community leaders.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                                <div class="card-text"><h4>Public Figure</h4><p>Politicians, community leaders.</p></div>
                             </div>
-
                             <div class="select-card" data-value="consumer" onclick="toggleCard(this, 'identity')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Consumer</h4>
-                                    <p>Shoppers, explorers, everyday users.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></div>
+                                <div class="card-text"><h4>Consumer</h4><p>Shoppers, explorers, everyday users.</p></div>
                             </div>
                         </div>
 
                         <div class="button-row">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(0)">← Back</button>
                             <button type="button" class="btn btn-primary" id="btn-next-1" disabled onclick="nextStep(2)">Continue →</button>
                         </div>
                     </div>
@@ -508,53 +563,24 @@
                         
                         <div class="card-grid single-col">
                             <div class="select-card" data-value="sell" onclick="toggleCard(this, 'goal')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Sell Products or Services</h4>
-                                    <p>Build a storefront, manage inventory, and accept payments.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
+                                <div class="card-text"><h4>Sell Products or Services</h4><p>Build a storefront, manage inventory, and accept payments.</p></div>
                             </div>
-
                             <div class="select-card" data-value="social" onclick="toggleCard(this, 'goal')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Build Community & Share</h4>
-                                    <p>Post updates, run promotions, and engage with an audience.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div>
+                                <div class="card-text"><h4>Build Community & Share</h4><p>Post updates, run promotions, and engage with an audience.</p></div>
                             </div>
-
                             <div class="select-card" data-value="wallet" onclick="toggleCard(this, 'goal')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Manage Funds & Crypto</h4>
-                                    <p>Use the multi-currency wallet for fiat and digital assets.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg></div>
+                                <div class="card-text"><h4>Manage Funds & Crypto</h4><p>Use the multi-currency wallet for fiat and digital assets.</p></div>
                             </div>
-
                             <div class="select-card" data-value="discover" onclick="toggleCard(this, 'goal')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>Discover & Shop</h4>
-                                    <p>Browse the marketplace, find businesses, and make purchases.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+                                <div class="card-text"><h4>Discover & Shop</h4><p>Browse the marketplace, find businesses, and make purchases.</p></div>
                             </div>
-
                             <div class="select-card" data-value="all" onclick="toggleCard(this, 'goal')">
-                                <div class="card-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                </div>
-                                <div class="card-text">
-                                    <h4>The Full Super App Experience</h4>
-                                    <p>I want to use storefronts, social, and the wallet together.</p>
-                                </div>
+                                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                                <div class="card-text"><h4>The Full Super App Experience</h4><p>I want to use storefronts, social, and the wallet together.</p></div>
                             </div>
                         </div>
 
@@ -575,13 +601,11 @@
                             <label for="name">Full Name or Brand Name</label>
                             <input type="text" id="name" name="name" placeholder="e.g. John Doe or Acme Studios" required>
                         </div>
-
                         <div class="input-group">
                             <label for="email">Email Address</label>
                             <input type="email" id="email" name="email" placeholder="you@example.com" required>
                         </div>
 
-                        <!-- Hidden inputs to store multi-selections -->
                         <input type="hidden" id="identity-input" name="identity">
                         <input type="hidden" id="goal-input" name="goal">
 
@@ -610,31 +634,33 @@
     </footer>
 
     <script>
-        let currentStep = 1;
-        // Changed to arrays to support multi-select
+        let currentStep = 0;
         const selections = { identity: [], goal: [] };
 
         function toggleCard(card, type) {
-            // Toggle the visual selected state
             card.classList.toggle('selected');
-            
             const val = card.getAttribute('data-value');
-            
-            // Update the array based on selection
             if (card.classList.contains('selected')) {
                 selections[type].push(val);
             } else {
                 selections[type] = selections[type].filter(item => item !== val);
             }
-            
-            // Enable next button if at least one is selected
             const btnId = type === 'identity' ? 'btn-next-1' : 'btn-next-2';
             document.getElementById(btnId).disabled = selections[type].length === 0;
         }
 
         function updateProgress() {
+            // Hide progress bar on Step 0
+            const progressContainer = document.getElementById('progress-container');
+            if (currentStep === 0) {
+                progressContainer.style.display = 'none';
+                return;
+            }
+            
+            progressContainer.style.display = 'block';
             const fill = document.getElementById('progress-fill');
-            fill.style.width = `${(currentStep / 3) * 100}%`;
+            // Calculate progress based on steps 1, 2, 3
+            fill.style.width = `${((currentStep - 1) / 2) * 100}%`; 
 
             for(let i=1; i<=3; i++) {
                 const ind = document.getElementById(`ind-${i}`);
@@ -648,6 +674,7 @@
             currentStep = step;
             document.getElementById(`step-${currentStep}`).classList.add('active');
             updateProgress();
+            window.scrollTo(0, 0); // Scroll to top on mobile
         }
 
         function prevStep(step) {
@@ -655,14 +682,13 @@
             currentStep = step;
             document.getElementById(`step-${currentStep}`).classList.add('active');
             updateProgress();
+            window.scrollTo(0, 0);
         }
 
         // Handle Form Submission
         const form = document.getElementById('beta-form');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Join arrays into comma-separated strings for the backend
             document.getElementById('identity-input').value = selections.identity.join(', ');
             document.getElementById('goal-input').value = selections.goal.join(', ');
 
