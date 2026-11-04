@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizIQly | Join the Waitlist</title>
-    <meta name="description" content="Join the waitlist for the ultimate Super App for business, creators, and finance.">
-    
+    <title>BizIQly | Get Started</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,162 +21,78 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ASH DOTS (MATCHING LOGIN) --- */
+        /* --- ASH DOTS --- */
         .ash-dots {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50vh;
+            position: fixed; bottom: 0; left: 0; right: 0; height: 50vh;
             background-image: radial-gradient(circle, #64748b 1.2px, transparent 1.5px);
             background-size: 20px 20px;
             mask-image: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
             -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, transparent 100%);
-            pointer-events: none;
-            z-index: 0;
+            pointer-events: none; z-index: 0;
         }
 
-        /* --- LIQUID GLASS UI (MATCHING LOGIN) --- */
+        /* --- LIQUID GLASS UI --- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 
-                0 8px 32px rgba(14, 165, 233, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 32px rgba(14, 165, 233, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
             border-radius: 16px;
         }
-
         .glass-input {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
-            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02); transition: all 0.3s ease;
         }
         .glass-input:focus {
-            background: rgba(255, 255, 255, 0.85);
-            border-color: #06b6d4;
-            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2), inset 0 1px 0 rgba(255,255,255,1);
-            outline: none;
+            background: rgba(255, 255, 255, 0.85); border-color: #06b6d4;
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2), inset 0 1px 0 rgba(255,255,255,1); outline: none;
         }
-
         .glass-btn {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 1), 
-                0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border-radius: 8px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-radius: 8px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
         }
         .glass-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-            transition: left 0.5s;
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: left 0.5s;
         }
         .glass-btn:hover::before { left: 100%; }
-        .glass-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 1), 
-                0 10px 15px -3px rgba(6, 182, 212, 0.15),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .glass-btn:active { transform: translateY(0); }
-
+        .glass-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.15); }
         .glass-btn-primary {
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(14, 165, 233, 0.2) 100%);
-            border: 1px solid rgba(6, 182, 212, 0.5);
-            color: #0e7490;
+            border: 1px solid rgba(6, 182, 212, 0.5); color: #0e7490;
         }
-        
-        .glass-btn-secondary {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            color: #475569;
-        }
-        .glass-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.8);
-            color: #0e7490;
-        }
+        .glass-btn-secondary { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.8); color: #475569; }
+        .glass-btn-secondary:hover { background: rgba(255, 255, 255, 0.8); color: #0e7490; }
 
-        /* --- SELECTION CARDS (GLASS STYLE) --- */
+        /* --- SELECTION CARDS --- */
         .select-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            padding: 16px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            user-select: none;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 12px; padding: 16px;
+            cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 16px; user-select: none;
         }
-        .select-card:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-        }
-        .select-card.selected {
-            background: rgba(6, 182, 212, 0.1);
-            border-color: #06b6d4;
-            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
-        }
+        .select-card:hover { background: rgba(255, 255, 255, 0.7); transform: translateY(-2px); }
+        .select-card.selected { background: rgba(6, 182, 212, 0.1); border-color: #06b6d4; box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2); }
         .card-icon {
-            width: 40px; height: 40px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            color: #0e7490; flex-shrink: 0;
-            transition: all 0.3s ease;
+            width: 40px; height: 40px; background: rgba(255, 255, 255, 0.8); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; color: #0e7490; flex-shrink: 0; transition: all 0.3s ease;
         }
-        .select-card.selected .card-icon {
-            background: #06b6d4;
-            color: white;
-        }
+        .select-card.selected .card-icon { background: #06b6d4; color: white; }
         .card-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; color: #1e293b; }
         .card-text p { font-size: 0.75rem; color: #64748b; line-height: 1.3; }
 
         /* --- PROGRESS BAR --- */
-        .progress-bar-bg {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #06b6d4, #0ea5e9);
-            width: 0%;
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .step-indicator {
-            display: flex; justify-content: space-between;
-            margin-top: 8px; font-size: 0.7rem; font-weight: 600; color: #64748b;
-        }
+        .progress-bar-bg { height: 4px; background: rgba(255, 255, 255, 0.5); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #06b6d4, #0ea5e9); width: 0%; transition: width 0.5s ease; }
+        .step-indicator { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.7rem; font-weight: 600; color: #64748b; }
         .step-indicator span.active { color: #0e7490; }
 
-        /* --- GENERAL LAYOUT --- */
+        /* --- LAYOUT --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        main {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            padding: 40px 24px; position: relative; z-index: 10;
-        }
-        .form-wrapper {
-            width: 100%; max-width: 720px;
-            overflow: hidden; position: relative;
-        }
+        main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 24px; position: relative; z-index: 10; }
+        .form-wrapper { width: 100%; max-width: 720px; overflow: hidden; position: relative; }
         .form-content { padding: 40px; min-height: 500px; display: flex; flex-direction: column; }
         .step { display: none; animation: fadeIn 0.4s ease forwards; }
         .step.active { display: flex; flex-direction: column; flex: 1; }
@@ -195,9 +109,8 @@
         }
         .info-card:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.7); }
         .info-card-icon {
-            width: 36px; height: 36px; background: rgba(255, 255, 255, 0.8);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            color: #0e7490; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.9);
+            width: 36px; height: 36px; background: rgba(255, 255, 255, 0.8); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; color: #0e7490; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.9);
         }
         .info-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; color: #1e293b; }
         .info-card p { font-size: 0.8rem; color: #64748b; line-height: 1.4; }
@@ -217,15 +130,13 @@
         .btn { padding: 16px 24px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; border: none; font-family: inherit; }
         .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
 
-        .success-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; padding: 40px 20px; }
-        .success-icon-wrapper {
-            width: 80px; height: 80px; background: rgba(6, 182, 212, 0.1); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: #06b6d4;
-            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        /* Business Info Section Animation */
+        #business-info-section { 
+            display: none; margin-top: 24px; padding-top: 24px; 
+            border-top: 1px dashed rgba(6, 182, 212, 0.3); 
+            animation: slideDown 0.4s ease forwards;
         }
-        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
-        .success-state h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; color: #1e293b; }
-        .success-state p { color: #64748b; line-height: 1.6; max-width: 400px; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         footer { text-align: center; padding: 24px; font-size: 0.75rem; color: #64748b; position: relative; z-index: 10; }
         footer strong { color: #1e293b; font-weight: 600; }
@@ -239,18 +150,16 @@
 </head>
 <body>
 
-    <!-- Ash Dots Background -->
     <div class="ash-dots"></div>
 
-    <!-- Floating Logo (Matching Login) -->
+    <!-- Floating Logo -->
     <div style="position: fixed; top: 24px; left: 0; right: 0; z-index: 50; display: flex; justify-content: center; pointer-events: none;">
-        <img src="https://res.cloudinary.com/dzosy1sic/image/upload/v1793592398/54DB9BAE-E677-4294-B9E1-688540D1F310_rgyrts.png" alt="BizIQly" style="height: 40px; width: auto; opacity: 0.9; drop-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <img src="https://res.cloudinary.com/dzosy1sic/image/upload/v1793592398/54DB9BAE-E677-4294-B9E1-688540D1F310_rgyrts.png" alt="BizIQly" style="height: 40px; width: auto; opacity: 0.9;">
     </div>
 
     <main>
         <div class="form-wrapper glass-card">
             
-            <!-- Progress Bar -->
             <div style="padding: 24px 40px 0; display: none;" id="progress-container">
                 <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
                 <div class="step-indicator">
@@ -260,7 +169,7 @@
                 </div>
             </div>
 
-            <form id="beta-form" action="https://formspree.io/f/xgaodwve" method="POST">
+            <form id="registration-form">
                 <div class="form-content">
                     
                     <!-- STEP 0: THE HOOK -->
@@ -273,28 +182,24 @@
                         <div class="system-grid">
                             <div class="info-card">
                                 <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg></div>
-                                <h4>The Storefront</h4>
-                                <p>Sell products, services, or digital assets instantly.</p>
+                                <h4>The Storefront</h4><p>Sell products, services, or digital assets instantly.</p>
                             </div>
                             <div class="info-card">
                                 <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div>
-                                <h4>The Social Feed</h4>
-                                <p>Post promos, build a following, and run ads.</p>
+                                <h4>The Social Feed</h4><p>Post promos, build a following, and run ads.</p>
                             </div>
                             <div class="info-card">
                                 <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg></div>
-                                <h4>The Wallet</h4>
-                                <p>Manage fiat (USD, NGN) and crypto (USDT) securely.</p>
+                                <h4>The Wallet</h4><p>Manage fiat (USD, NGN) and crypto (USDT) securely.</p>
                             </div>
                             <div class="info-card">
                                 <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
-                                <h4>The Marketplace</h4>
-                                <p>Get discovered by millions globally.</p>
+                                <h4>The Marketplace</h4><p>Get discovered by millions globally.</p>
                             </div>
                         </div>
 
                         <div class="benefits-box">
-                            <h3>Why join early?</h3>
+                            <h3>Why join now?</h3>
                             <div class="benefit-item"><svg class="benefit-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Zero Monthly Fees:</strong> Start completely free.</span></div>
                             <div class="benefit-item"><svg class="benefit-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Instant Global Payouts:</strong> Get paid directly to bank or wallet.</span></div>
                             <div class="benefit-item"><svg class="benefit-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Total Ownership:</strong> Upgrade to custom domain anytime.</span></div>
@@ -377,40 +282,51 @@
                         </div>
                     </div>
 
-                    <!-- STEP 3: DETAILS -->
+                    <!-- STEP 3: DETAILS + BUSINESS INFO -->
                     <div class="step" id="step-3">
                         <div class="step-header">
-                            <h2>Almost there.</h2>
-                            <p>Where should we send your private onboarding link?</p>
+                            <h2>Create your account</h2>
+                            <p>Enter your details to finalize your registration.</p>
                         </div>
                         
                         <div class="input-group">
                             <label for="name">Full Name or Brand Name</label>
-                            <input type="text" id="name" name="name" placeholder="e.g. John Doe or Acme Studios" required class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b;">
+                            <input type="text" id="name" placeholder="e.g. John Doe or Acme Studios" required class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b;">
                         </div>
                         <div class="input-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" required class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b;">
+                            <input type="email" id="email" placeholder="you@example.com" required class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b;">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Create Password</label>
+                            <input type="password" id="password" placeholder="Min 8 characters" required class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b;">
                         </div>
 
-                        <input type="hidden" id="identity-input" name="identity">
-                        <input type="hidden" id="goal-input" name="goal">
+                        <!-- Dynamic Business Info Section -->
+                        <div id="business-info-section">
+                            <h4 style="font-size: 0.85rem; font-weight: 700; color: #0e7490; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Business Information</h4>
+                            <div class="input-group">
+                                <label for="biz-name">Registered Business Name</label>
+                                <input type="text" id="biz-name" placeholder="e.g. Acme Retail Ltd" class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b;">
+                            </div>
+                            <div class="input-group">
+                                <label for="biz-category">Business Category</label>
+                                <select id="biz-category" class="glass-input" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1rem; color: #1e293b; appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%2364748b%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px;">
+                                    <option value="" disabled selected>Select a category</option>
+                                    <option value="retail">Retail / E-commerce</option>
+                                    <option value="food">Food & Beverage</option>
+                                    <option value="services">Professional Services</option>
+                                    <option value="tech">Technology / SaaS</option>
+                                    <option value="health">Health & Wellness</option>
+                                    <option value="education">Education</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="button-row">
                             <button type="button" class="btn glass-btn glass-btn-secondary" onclick="prevStep(2)">← Back</button>
-                            <button type="submit" class="btn glass-btn glass-btn-primary" id="btn-submit" style="flex:1">Request Access →</button>
-                        </div>
-                    </div>
-
-                    <!-- SUCCESS STATE -->
-                    <div class="success-state" id="success-state">
-                        <div class="success-icon-wrapper">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <h2>You're on the list!</h2>
-                        <p>We've received your application. Keep an eye on your inbox for your exclusive invite to the BizIQly beta.</p>
-                        <div style="margin-top: 32px;">
-                            <a href="login.html" class="btn glass-btn glass-btn-primary">Go to Login Page</a>
+                            <button type="submit" class="btn glass-btn glass-btn-primary" id="btn-submit" style="flex:1">Complete Registration →</button>
                         </div>
                     </div>
 
@@ -443,13 +359,11 @@
         function updateProgress() {
             const progressContainer = document.getElementById('progress-container');
             if (currentStep === 0) {
-                progressContainer.style.display = 'none';
-                return;
+                progressContainer.style.display = 'none'; return;
             }
             progressContainer.style.display = 'block';
             const fill = document.getElementById('progress-fill');
             fill.style.width = `${((currentStep - 1) / 2) * 100}%`; 
-
             for(let i=1; i<=3; i++) {
                 const ind = document.getElementById(`ind-${i}`);
                 if(i <= currentStep) ind.classList.add('active');
@@ -461,6 +375,14 @@
             document.getElementById(`step-${currentStep}`).classList.remove('active');
             currentStep = step;
             document.getElementById(`step-${currentStep}`).classList.add('active');
+            
+            // Show business info if Business Owner was selected
+            if (step === 3 && selections.identity.includes('business_owner')) {
+                document.getElementById('business-info-section').style.display = 'block';
+            } else {
+                document.getElementById('business-info-section').style.display = 'none';
+            }
+
             updateProgress();
             window.scrollTo(0, 0);
         }
@@ -473,40 +395,19 @@
             window.scrollTo(0, 0);
         }
 
-        const form = document.getElementById('beta-form');
-        form.addEventListener('submit', async (e) => {
+        // Handle Form Submission -> Redirect to Login/Register
+        const form = document.getElementById('registration-form');
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            document.getElementById('identity-input').value = selections.identity.join(', ');
-            document.getElementById('goal-input').value = selections.goal.join(', ');
-
             const btn = document.getElementById('btn-submit');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Sending...';
+            btn.innerHTML = 'Creating Account...';
             btn.disabled = true;
 
-            const formData = new FormData(form);
-            
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    document.getElementById('step-3').style.display = 'none';
-                    document.getElementById('progress-container').style.display = 'none';
-                    document.getElementById('success-state').style.display = 'flex';
-                } else {
-                    alert('Something went wrong. Please try again.');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }
-            } catch (error) {
-                alert('Network error. Please check your connection.');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
+            // Simulate API call then redirect
+            setTimeout(() => {
+                // Pass registration mode to login page via URL param
+                window.location.href = 'login.html?mode=register&name=' + encodeURIComponent(document.getElementById('name').value) + '&email=' + encodeURIComponent(document.getElementById('email').value);
+            }, 1500);
         });
     </script>
 </body>
