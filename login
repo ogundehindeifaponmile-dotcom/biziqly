@@ -217,15 +217,19 @@
                 <div class="space-y-3 mt-6 hidden sm:block">
                     <div class="flex items-center space-x-3 text-slate-600">
                         <div class="w-2 h-2 rounded-full bg-cyan-500 shrink-0"></div>
-                        <span class="text-sm font-medium">Real-time fund tracking</span>
+                        <span class="text-sm font-medium">Discover businesses, products & services.</span>
                     </div>
                     <div class="flex items-center space-x-3 text-slate-600">
                         <div class="w-2 h-2 rounded-full bg-cyan-500 shrink-0"></div>
-                        <span class="text-sm font-medium">Boost online visibility</span>
+                        <span class="text-sm font-medium">Shop, connect & engage with businesses.</span>
                     </div>
                     <div class="flex items-center space-x-3 text-slate-600">
                         <div class="w-2 h-2 rounded-full bg-cyan-500 shrink-0"></div>
-                        <span class="text-sm font-medium">Secure OTP authentication</span>
+                        <span class="text-sm font-medium">Real Vendors, Real Customers.</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-600">
+                        <div class="w-2 h-2 rounded-full bg-cyan-500 shrink-0"></div>
+                        <span class="text-sm font-medium">Showcases your brand and grow your business</span>
                     </div>
                 </div>
             </div>
