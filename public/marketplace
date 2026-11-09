@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizIQly Marketplace</title>
+    <style>
+        :root {
+            --primary: #4F46E5; /* Professional Indigo */
+            --bg: #FFFFFF;
+            --surface: #F9FAFB;
+            --text-main: #111827;
+            --text-sub: #6B7280;
+            --border: #E5E7EB;
+            --success: #10B981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding-bottom: 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- ICONS --- */
+        .icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .icon-sm { width: 16px; height: 16px; }
+        .icon-lg { width: 28px; height: 28px; }
+
+        /* --- HEADER --- */
+        .header {
+            position: sticky; top: 0; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        .logo { font-weight: 800; font-size: 20px; color: var(--primary); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+        .header-actions { display: flex; gap: 16px; }
+        .icon-btn { background: none; border: none; cursor: pointer; color: var(--text-main); padding: 4px; position: relative; }
+        .badge { position: absolute; top: 2px; right: 2px; width: 8px; height: 8px; background: #EF4444; border-radius: 50%; border: 2px solid white; }
+
+        /* --- SEARCH --- */
+        .search-wrapper { padding: 16px 20px; }
+        .search-bar {
+            width: 100%; padding: 12px 16px 12px 44px;
+            border-radius: 12px; border: 1px solid var(--border);
+            background: var(--surface); font-size: 15px; outline: none;
+            transition: all 0.2s;
+        }
+        .search-bar:focus { border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+        .search-icon-pos { position: absolute; left: 32px; top: 28px; color: var(--text-sub); pointer-events: none; }
+
+        /* --- CATEGORIES --- */
+        .section-title { font-size: 17px; font-weight: 700; margin: 24px 20px 12px; color: var(--text-main); }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 20px; }
+        .cat-item {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            padding: 12px 4px; background: var(--surface); border-radius: 12px;
+            font-size: 12px; font-weight: 600; color: var(--text-main);
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .cat-item:hover { transform: translateY(-2px); background: #F3F4F6; }
+        .cat-icon-box { 
+            width: 40px; height: 40px; border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center;
+            background: white; color: var(--primary);
+        }
+
+        /* --- BUSINESS CARD --- */
+        .feed-section { padding: 0 20px 24px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .see-all { color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; }
+        
+        .biz-card {
+            display: flex; align-items: center; gap: 16px;
+            background: white; padding: 16px; border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+        .biz-logo { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; background: #f3f4f6; }
+        .biz-info { flex: 1; }
+        .biz-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .verified-badge { color: var(--success); }
+        .biz-desc { font-size: 13px; color: var(--text-sub); margin-bottom: 6px; line-height: 1.4; }
+        .biz-stats { font-size: 12px; color: var(--text-main); font-weight: 600; display: flex; align-items: center; gap: 4px; }
+        .follow-btn {
+            background: var(--primary); color: white; border: none;
+            padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .follow-btn:hover { opacity: 0.9; }
+
+        /* --- PRODUCT SCROLL --- */
+        .scroll-container {
+            display: flex; overflow-x: auto; gap: 16px;
+            padding-bottom: 12px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+            scrollbar-width: none;
+        }
+        .scroll-container::-webkit-scrollbar { display: none; }
+        
+        .prod-card {
+            min-width: 150px; max-width: 150px;
+            background: white; border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .prod-img { width: 100%; height: 150px; background: #f3f4f6; object-fit: cover; }
+        .prod-details { padding: 10px; }
+        .prod-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .prod-price { color: var(--primary); font-weight: 700; font-size: 14px; }
+        .prod-sold { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
+
+        /* --- BOTTOM NAV --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: white; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-around; padding: 10px 0 20px;
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            color: var(--text-sub); font-size: 10px; font-weight: 600; cursor: pointer;
+            width: 20%;
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            BizIQly
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <span class="badge"></span>
+            </button>
+            <button class="icon-btn">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Search -->
+        <div class="search-wrapper" style="position: relative;">
+            <svg class="icon search-icon-pos" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" class="search-bar" placeholder="Search businesses, products...">
+        </div>
+
+        <!-- Categories -->
+        <h3 class="section-title">Explore Categories</h3>
+        <div class="category-grid">
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><path d="M20.38 3.46L16 2 12 5.5 8 2 3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></div>
+                Fashion
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
+                Tech
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></div>
+                Food
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                Beauty
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                Home
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+                Services
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M6 20v-2a6 6 0 1 1 12 0v2"/><path d="M6 4v2a6 6 0 1 0 12 0V4"/></svg></div>
+                Fitness
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon-box"><svg class="icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></div>
+                More
+            </div>
+        </div>
+
+        <!-- Featured Businesses -->
+        <div class="feed-section">
+            <div class="section-header">
+                <h3>Featured Businesses</h3>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            
+            <div class="biz-card">
+                <img src="https://via.placeholder.com/60/4F46E5/ffffff?text=TG" alt="Logo" class="biz-logo">
+                <div class="biz-info">
+                    <div class="biz-name">TechGear Pro 
+                        <svg class="icon-sm verified-badge" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="biz-desc">Premium electronics & accessories</div>
+                    <div class="biz-stats">
+                        <svg class="icon-sm" style="color:#F59E0B; fill:currentColor; stroke:none;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        4.9 • 1.2k reviews
+                    </div>
+                </div>
+                <button class="follow-btn">Follow</button>
+            </div>
+
+            <div class="biz-card">
+                <img src="https://via.placeholder.com/60/10B981/ffffff?text=GL" alt="Logo" class="biz-logo">
+                <div class="biz-info">
+                    <div class="biz-name">GreenLeaf Organics
+                        <svg class="icon-sm verified-badge" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="biz-desc">Fresh organic produce delivery</div>
+                    <div class="biz-stats">
+                        <svg class="icon-sm" style="color:#F59E0B; fill:currentColor; stroke:none;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        4.7 • 856 reviews
+                    </div>
+                </div>
+                <button class="follow-btn">Follow</button>
+            </div>
+        </div>
+
+        <!-- Trending Products -->
+        <div class="feed-section">
+            <div class="section-header">
+                <h3>Trending Products</h3>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            
+            <div class="scroll-container">
+                <div class="prod-card">
+                    <img src="https://via.placeholder.com/150/e5e7eb/9ca3af?text=Audio" class="prod-img">
+                    <div class="prod-details">
+                        <div class="prod-name">Wireless Earbuds</div>
+                        <div class="prod-price">$89.99</div>
+                        <div class="prod-sold">2.3k sold</div>
+                    </div>
+                </div>
+                <div class="prod-card">
+                    <img src="https://via.placeholder.com/150/e5e7eb/9ca3af?text=Shoes" class="prod-img">
+                    <div class="prod-details">
+                        <div class="prod-name">Nike Air Max</div>
+                        <div class="prod-price">$129.99</div>
+                        <div class="prod-sold">1.8k sold</div>
+                    </div>
+                </div>
+                <div class="prod-card">
+                    <img src="https://via.placeholder.com/150/e5e7eb/9ca3af?text=Coffee" class="prod-img">
+                    <div class="prod-details">
+                        <div class="prod-name">Organic Beans</div>
+                        <div class="prod-price">$24.99</div>
+                        <div class="prod-sold">950 sold</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Home
+        </div>
+        <div class="nav-item">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Explore
+        </div>
+        <div class="nav-item">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Orders
+        </div>
+        <div class="nav-item">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Inbox
+        </div>
+        <div class="nav-item">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile
+        </div>
+    </nav>
+
+</body>
+</html>
